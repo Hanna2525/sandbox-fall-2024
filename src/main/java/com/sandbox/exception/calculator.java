@@ -10,7 +10,6 @@ public class calculator {
         int sum = a;
         for (int i : b) {
             sum += i;
-
         }
         return sum;
     }
@@ -21,31 +20,29 @@ public class calculator {
 
     public static int multiply(int a, int b) {
         return a * b;
-
     }
 
     public static int divide(int a, int b) {
         int returnValue = 0;
         try {
-            returnValue = a / b;
-        } catch (ArithmeticException e) {
+            returnValue = a/b;
+        }  catch (ArithmeticException e) {
             System.err.println("Can't divide by zero");
         }
-        reture retureValue;
+
+        return returnValue;
     }
 
-    public float divide(float a, float b) throws DivideByZeroExcdeption {
+    public static float divide(float a, float b) throws DivideByZeroException {
         if (b == 0.0) {
-            throw new DivideByZeroExcdeption();
+            throw new DivideByZeroException();
+        }
+        return a / b;
     }
- return a /b;
-}
 
-    public static void main(String[] args) {
-     System.out.println(divide (5,0));
-     System.out.println(divide(5.0f, 0.0f));
-
-     }
+    public static void main(String[] args) throws DivideByZeroException {
+        System.out.println(divide(5,0));
+        System.out.println(divide(5.0f,0.0f));
 
     }
 }
