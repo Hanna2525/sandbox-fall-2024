@@ -1,4 +1,4 @@
-package com.sandbox.Generics;
+package com.sandbox.generics;
 
 public class IntegerBox {
     private Integer contents;
@@ -16,7 +16,10 @@ public class IntegerBox {
 
     @Override
     public String toString() {
-        return super.toString();
+        final StringBuilder sb = new StringBuilder("Box{");
+        sb.append("contents=").append(contents);
+        sb.append('}');
+        return sb.toString();
 
     }
 }
