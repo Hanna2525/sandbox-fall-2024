@@ -1,13 +1,8 @@
 package com.sandbox.trees;
 
-import com.sandbox.linkedlist.LinkedList;
-import com.sandbox.queues.Queue;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-public class BinaryTree <T> implements Tree<T> {
+public class BinaryTree<T> implements Tree<T> {
 
     private BinaryTreeNode<T> root;
     private int count;
@@ -59,7 +54,9 @@ public class BinaryTree <T> implements Tree<T> {
     }
 
     private BinaryTreeNode<T> findNode(T targetElement, BinaryTreeNode<T> next) {
-        if (next == null) return null;
+        if (next == null) {
+            return null;
+        }
 
         if (next.getElement()
                 .equals(targetElement)) return next;
@@ -213,10 +210,12 @@ public class BinaryTree <T> implements Tree<T> {
     }
 
     private void preOrder(BinaryTreeNode<T> node, Queue<T> tempList) {
+
+        // Root Left Right (Pre-order)
         if (node != null) {
             tempList.add(node.getElement());
-            preOrder(node.getLeft(), tempList);
-            preOrder(node.getRight(), tempList);
+            preOrder(node.left, tempList);
+            preOrder(node.right, tempList);
         }
     }
 
@@ -230,10 +229,12 @@ public class BinaryTree <T> implements Tree<T> {
     }
 
     private void inOrder(BinaryTreeNode<T> node, Queue<T> tempList) {
+
+        // Left Root Right (In-order)
         if (node != null) {
-            inOrder(node.getLeft(), tempList);
+            inOrder(node.left, tempList);
             tempList.add(node.getElement());
-            inOrder(node.getRight(), tempList);
+            inOrder(node.right, tempList);
         }
     }
 
@@ -247,9 +248,11 @@ public class BinaryTree <T> implements Tree<T> {
     }
 
     private void postOrder(BinaryTreeNode<T> node, Queue<T> tempList) {
+
+        // Left Right Root (Post-order)
         if (node != null) {
-            postOrder(node.getLeft(), tempList);
-            postOrder(node.getRight(), tempList);
+            postOrder(node.left, tempList);
+            postOrder(node.right, tempList);
             tempList.add(node.getElement());
         }
     }
@@ -265,13 +268,14 @@ public class BinaryTree <T> implements Tree<T> {
 
     public void levelOrder(BinaryTreeNode<T> node, Queue<T> tempList) {
 
+        // temporary queue to hold the nodes
         Queue<BinaryTreeNode<T>> queue = new LinkedList<>();
         queue.add(node);
 
         while (!queue.isEmpty()) {
 
             BinaryTreeNode<T> tempNode = queue.poll();
-            tempList.add(tempNode.element);
+            tempList.add(tempNode.getElement());
 
             if (tempNode.left != null) {
                 queue.add(tempNode.left);
@@ -280,7 +284,6 @@ public class BinaryTree <T> implements Tree<T> {
             if (tempNode.right != null) {
                 queue.add(tempNode.right);
             }
-
         }
 
     }
@@ -460,6 +463,4 @@ public class BinaryTree <T> implements Tree<T> {
         }
 
     }
-
 }
-
